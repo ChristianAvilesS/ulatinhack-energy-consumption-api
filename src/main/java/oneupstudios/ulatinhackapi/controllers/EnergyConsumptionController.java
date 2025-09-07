@@ -52,7 +52,7 @@ public class EnergyConsumptionController {
     @PostMapping("save-all")
     public void saveAll(@RequestBody List<EnergyConsumptionDTO> dto) {
         service.saveAll(dto.stream().map(d -> {
-            var entity = mapper.map(dto, EnergyConsumption.class);
+            var entity = mapper.map(d, EnergyConsumption.class);
             entity.setCustomer(customerService.getCustomer(d.getCustomerId()));
             return entity;
         }).collect(Collectors.toList()));
